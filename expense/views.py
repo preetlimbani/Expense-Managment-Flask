@@ -38,7 +38,6 @@ class ExpenseListCreateView(Resource):
     def get(self):
         user_id = get_jwt_identity()
         expenses = mongo.db.expenses.find({'user_id': user_id})
-        breakpoint()
         serialized_data = ExpenseSchema().dump(expenses, many=True)
         return {'expenses': serialized_data}, 200
 
